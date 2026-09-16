@@ -15,6 +15,7 @@ description: Developing custom Markdown syntaxes and remark/rehype plugins for t
 4. **SSR 优先**:能用原生 HTML(`<details>`/`<summary>`、`<mark>`、`<abbr>`)表达的交互不加 hydration;`client-enhanced` 语法的初始 HTML 必须完整可读,脚本失败不能丢正文;客户端初始化必须覆盖直接加载、Swup `content:replace` 与文章解密三条路径。
 5. **非法输入保留原文**:不完整的语法回退为普通 Markdown,不静默改写。
 6. **manifest 登记**:语法在生产可用后才加入 `src/plugins/markdown/manifest.json`(按 `id` 排序),演示文章、实现、样式、测试路径必须真实存在;`research/` 里的候选能力不得提前登记。插件/样式/演示/测试移动时同一提交更新 manifest。
+7. **围栏展示会被 Expressive Code 二次处理**:围栏内的字面量过了本项目插件链之后还要过 Expressive Code。`frames.extractFileNameFromCode`(默认开启,`src/config/integrationsConfig.ts` 未覆盖)会从代码块**前 4 行**里挑「路径形态的注释」提成代码块标题并整行删除,所以演示/文档要在围栏里原样展示 `<!-- @include: path -->` 这类注释指令时必须给该围栏加 `frame="none"`,否则首行静默消失(实例见 `src/content/posts/markdown-syntax-test.md` §16)。
 
 ## 新语法准入流程(摘要)
 
