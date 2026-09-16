@@ -84,6 +84,7 @@ Reference implementation and copyable example: `src/plugins/markdown/manifest.js
 - `:::details` 折叠是纯原生 `<details>`,无 JS;tabs/code-tree 等交互增强在脚本失败时正文仍完整可读;
 - 加密文章的语法增强(如 mermaid)在解密后会正确初始化,无需额外处理;
 - 内联 `w-N%` 是 alt 中的宽度令牌(1–100),越界值保留原文。
+- Expressive Code 默认会把代码块**前 4 行**内「路径形态的注释」提取成文件名标题并整行删除;要在围栏里原样展示 `<!-- @include: path -->` 这类注释,必须给该围栏加 `frame="none"`。
 
 ## Audio Reader 音频
 

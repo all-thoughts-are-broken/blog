@@ -453,14 +453,14 @@ flowchart LR
 
 整文件包含与行范围包含的写法如下（这里仅作展示，不重复展开）：
 
-```markdown
+```markdown frame="none"
 <!-- @include: src/content/snippets/include-example.md -->
 <!-- @include: src/content/snippets/include-example.md{1-4} -->
 <!-- @include: src/content/snippets/include-example.md{5-} -->
 <!-- @include: src/content/snippets/include-example.md{-4} -->
 ```
 
-围栏内的 include 注释保持字面量，不会被展开。
+围栏内的 include 注释保持字面量，不会被展开。这里显式写上 `frame="none"`：Expressive Code 默认会从代码块前 4 行里挑一条「路径形态的注释」当作文件名标题，并把那一行整行删掉；这四种写法里不带范围的 `<!-- @include: ... -->` 正好会被选中，只有加上 `frame="none"` 才会原样保留（该元数据的取值见 §20）。
 
 ## 17. 音频 Audio Reader
 

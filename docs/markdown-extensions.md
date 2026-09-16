@@ -232,3 +232,5 @@ Admonitions、Collapse Panels、Option Groups、Marker、File Tree、Code Tree�
 ```
 
 路径相对当前 Markdown 文件解析，也可使用仓库根目录相对路径。行号从 1 开始且包含首尾行；区域由源文件中的 `#region name` 与 `#endregion` 标记界定。缺失文件、非法范围、未闭合区域、仓库外路径和递归包含都会保留原注释。代码围栏中的 include 注释不会展开。
+
+注意一个下游交互：围栏内的注释确实不会被本项目展开，但 Expressive Code 的 `extractFileNameFromCode`（默认开启）会把代码块**前 4 行**里「路径形态的注释」提取成代码块标题，并删除那一行。所以用围栏展示 `<!-- @include: path -->` 这类写法时必须显式加 `frame="none"`，否则首行会变成标题并从代码里消失。示例见 `src/content/posts/markdown-syntax-test.md` 的 §16。
