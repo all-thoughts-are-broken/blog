@@ -56,6 +56,7 @@ public/assets/moments/thumbnails/*
 
 # local tooling artifacts
 .zcode/
+.workbuddy/
 .codex-*.log
 research/
 
