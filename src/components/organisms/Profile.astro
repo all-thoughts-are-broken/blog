@@ -6,10 +6,12 @@ import Avatar from "@components/atoms/display/Avatar.svelte";
 import Card from "@components/atoms/display/Card.svelte";
 import Tooltip from "@components/atoms/overlay/Tooltip.svelte";
 import UmamiStats from "@components/organisms/UmamiStats.astro";
+import I18nKey from "@i18n/i18nKey";
+import { i18n } from "@i18n/translation";
 import { resolveImageAsset } from "@utils/asset-utils";
 import { url } from "@utils/url-utils";
 import { Icon } from "astro-icon/components";
-import { profileConfig } from "@/config";
+import { aboutConfig, profileConfig } from "@/config";
 import type { ProfileWidget } from "@/types/sidebarConfig";
 
 interface Props {
@@ -24,6 +26,11 @@ const style = Astro.props.style;
 const priority = Astro.props.priority ?? false;
 
 const config = profileConfig;
+// 头像点击进入关于页；关于页被 aboutConfig 关闭时去掉链接与悬浮提示图标，
+// 只保留展示，避免指向 404 跳转存根。
+const avatarLinkProps = aboutConfig.enable
+	? { href: url("/about/"), "aria-label": i18n(I18nKey.about) }
+	: {};
 const avatarAsset = await resolveImageAsset(config.avatar ?? "");
 let avatarUrl = typeof avatarAsset === "string" ? avatarAsset : avatarAsset.src;
 let avatarSrcset: string | undefined;
@@ -57,12 +64,14 @@ if (typeof avatarAsset !== "string") {
 ---
 <div class={className} style={style}>
 	<Card color="var(--card-bg)" radius="l" class="m3-profile p-3">
-    <a aria-label="Go to About Page" href={url('/about/')}
+    <a {...avatarLinkProps}
        class="m3-profile__avatar-link group">
-        <div class="m3-profile__avatar-overlay">
-            <Icon name="fa6-regular:address-card"
-                  class="m3-profile__avatar-icon" />
-        </div>
+        {aboutConfig.enable && (
+            <div class="m3-profile__avatar-overlay">
+                <Icon name="fa6-regular:address-card"
+                      class="m3-profile__avatar-icon" />
+            </div>
+        )}
         <Avatar
             src={avatarUrl}
 			srcset={avatarSrcset}

@@ -13,7 +13,8 @@ import { withUserConfig } from "../utils/config-overlay.ts";
  * 注：时间线的具体节点数据（标题、日期、经历描述、要点列表、关联链接等）请在 `src/data/timeline.ts` 中维护。
  */
 export const timelineConfig: TimelineConfig = withUserConfig("timeline", {
-	enable: true,
+	// false 时导航入口同步隐藏，访问 /timeline/ 跳转 404。
+	enable: false,
 	title: "$t:timeline",
 	description: "$t:timelineBanner",
 	categories: [

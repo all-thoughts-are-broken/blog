@@ -99,15 +99,11 @@ export const llmsConfig: LlmsConfig = withUserConfig("llms", {
 			description: "Main blog entrance and latest post stream.",
 		},
 		{
-			title: "About",
-			url: "/about/",
-			description: "Author profile, technical stack, and background.",
-		},
-		{
 			title: "Archive",
 			url: "/archive/",
 			description: "Chronological index of all published writings.",
 		},
+		// 关于页由 aboutConfig 关闭（/about/ 跳转 404），故不在此列出。
 	],
 
 	/**

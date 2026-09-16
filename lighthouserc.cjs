@@ -7,7 +7,6 @@ module.exports = {
 				"http://127.0.0.1:4321/",
 				"http://127.0.0.1:4321/?post-list-mode=grid",
 				"http://127.0.0.1:4321/archive/",
-				"http://127.0.0.1:4321/about/",
 				"http://127.0.0.1:4321/posts/markdown-syntax-test/",
 			],
 			numberOfRuns: 3,

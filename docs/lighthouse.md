@@ -31,10 +31,9 @@ lighthouse:collect 使用现有 dist 启动 preview，并将采集结果保存�
 - /
 - /?post-list-mode=grid
 - /archive/
-- /about/
 - /posts/markdown-syntax-test/
 
-`/moments/` 与多篇分类 demo 文章已随功能关闭移除：动态页关闭后该路由会重定向到 404，采集它只会得到无意义的低分；文章页固定采集唯一的语法测试文章。
+`/moments/`、`/about/` 与多篇分类 demo 文章已随功能关闭移除：这些路由关闭后会重定向到 404，采集它们只会得到无意义的低分；文章页固定采集唯一的语法测试文章。
 
 每个 URL 默认采集 3 次。配置位于根目录 lighthouserc.cjs。网格首页通过审计脚本注入 localStorage 状态；普通首页不会被改变。审计脚本还等待主题变量和页面入场动画收敛，避免把中间帧作为结果。
 
