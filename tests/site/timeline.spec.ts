@@ -1,7 +1,12 @@
 import { expect, test } from "@playwright/test";
+import { timelineConfig } from "../../src/config/timelineConfig";
 
 const TOTAL_COUNT = 5;
 const MILESTONE_COUNT = 1;
+
+// 本仓库关闭了时间线页（timelineConfig.enable === false），/timeline/ 会重定向到 404；
+// 主题用户启用该功能后本文件会照常执行。
+test.skip(!timelineConfig.enable, "时间线页在本仓库已关闭。");
 
 test.describe("时间线页", () => {
 	test.beforeEach(async ({ page }) => {

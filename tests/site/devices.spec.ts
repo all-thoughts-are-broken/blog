@@ -1,6 +1,11 @@
 import { expect, test } from "@playwright/test";
+import { devicesConfig } from "../../src/config/devicesConfig";
 
 const DEVICE_COUNT = 5;
+
+// 本仓库关闭了设备页（devicesConfig.enable === false），/devices/ 会重定向到 404；
+// 主题用户启用该功能后本文件会照常执行。
+test.skip(!devicesConfig.enable, "设备页在本仓库已关闭。");
 
 test.describe("设备展示页", () => {
 	test.beforeEach(async ({ page }) => {

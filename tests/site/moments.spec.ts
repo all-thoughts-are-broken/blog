@@ -1,4 +1,5 @@
 import { expect, test } from "@playwright/test";
+import { momentsConfig } from "../../src/config/momentsConfig";
 
 /**
  * 动态页功能锁定（pages/moments.astro -> organisms/MomentSection.svelte，client:only）。
@@ -11,6 +12,10 @@ import { expect, test } from "@playwright/test";
  */
 
 const MOMENT_COUNT = 6;
+
+// 本仓库关闭了动态页（momentsConfig.enable === false），/moments/ 会重定向到 404，
+// 且 src/content/moments/ 已清空；主题用户启用该功能并放回内容后本文件会照常执行。
+test.skip(!momentsConfig.enable, "动态页在本仓库已关闭。");
 
 test.describe("动态页", () => {
 	test.beforeEach(async ({ page }) => {

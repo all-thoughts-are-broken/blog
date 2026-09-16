@@ -1,4 +1,9 @@
 import { expect, test } from "@playwright/test";
+import { albumsConfig } from "../../src/config/albumsConfig";
+
+// 本仓库关闭了相册页（albumsConfig.enable === false），/albums/ 会重定向到 404；
+// 主题用户启用该功能后本文件会照常执行。
+test.skip(!albumsConfig.enable, "相册页在本仓库已关闭。");
 
 test.describe("相册页响应式滚动", () => {
 	test("从手机视口切换到桌面视口后仍可滚动", async ({ page }) => {

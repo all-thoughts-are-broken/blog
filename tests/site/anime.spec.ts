@@ -1,4 +1,5 @@
 import { expect, test } from "@playwright/test";
+import { animeConfig } from "../../src/config/animeConfig";
 
 /**
  * 番剧页功能锁定（pages/anime.astro -> organisms/AnimeSection.svelte，client:only）。
@@ -11,6 +12,10 @@ import { expect, test } from "@playwright/test";
  * 断言基于 Mizuki 迁移数据集（5 条：watching×3/completed/planned，带真实封面与
  * Bilibili 外链）；站点默认语言为 en（siteConfig.lang），文案断言用英文。
  */
+
+// 本仓库关闭了番剧页（animeConfig.enable === false），/anime/ 会重定向到 404；
+// 主题用户启用该功能后本文件会照常执行。
+test.skip(!animeConfig.enable, "番剧页在本仓库已关闭。");
 
 const ANIME_COUNT = 5;
 

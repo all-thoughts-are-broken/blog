@@ -1,7 +1,12 @@
 import { expect, test } from "@playwright/test";
+import { skillsConfig } from "../../src/config/skillsConfig";
 
 const SKILL_COUNT = 21;
 const FRONTEND_COUNT = 8;
+
+// 本仓库关闭了技能页（skillsConfig.enable === false），/skills/ 会重定向到 404；
+// 主题用户启用该功能后本文件会照常执行。
+test.skip(!skillsConfig.enable, "技能页在本仓库已关闭。");
 
 test.describe("技能页", () => {
 	test.beforeEach(async ({ page }) => {

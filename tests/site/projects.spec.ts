@@ -1,6 +1,11 @@
 import { expect, test } from "@playwright/test";
+import { projectsConfig } from "../../src/config/projectsConfig";
 
 const PROJECT_COUNT = 3;
+
+// 本仓库关闭了项目页（projectsConfig.enable === false），/projects/ 会重定向到 404；
+// 主题用户启用该功能后本文件会照常执行。
+test.skip(!projectsConfig.enable, "项目页在本仓库已关闭。");
 
 test.describe("项目页", () => {
 	test.beforeEach(async ({ page }) => {

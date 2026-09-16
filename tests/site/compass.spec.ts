@@ -1,4 +1,5 @@
 import { expect, test } from "@playwright/test";
+import { compassConfig } from "../../src/config/compassConfig";
 
 /**
  * 站点罗盘页功能锁定（pages/compass.astro -> organisms/CompassSection -> molecules/CompassTile，client:only）。
@@ -11,6 +12,10 @@ import { expect, test } from "@playwright/test";
  * 覆盖「有 icon / 无 icon / 有 note / 无 note」四种形态；
  * 演示数据为纯英文（站点默认语言 en）；站点文案断言用英文，分组名来自数据。
  */
+
+// 本仓库关闭了站点罗盘页（compassConfig.enable === false），/compass/ 会重定向到 404；
+// 主题用户启用该功能后本文件会照常执行。
+test.skip(!compassConfig.enable, "站点罗盘页在本仓库已关闭。");
 
 const SHELF_KEYS = ["dev", "design", "tools", "reads"];
 const SHELF_NAMES: Record<string, string> = {
