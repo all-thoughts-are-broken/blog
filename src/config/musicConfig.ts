@@ -49,7 +49,9 @@ import { withUserConfig } from "../utils/config-overlay.ts";
  * ─────────────────────────────────────────────────────────────────────────────
  */
 export const musicConfig: MusicConfig = withUserConfig("music", {
-	enable: true,
+	// 关闭后 resolveMusicOptions 返回 null：music widget 数据不再解析，
+	// virtual:shirone-music-sidebar 也不会被注册，零网络请求零 DOM 产物。
+	enable: false,
 	provider: "mixed",
 	// tracks: [
 	// 	{

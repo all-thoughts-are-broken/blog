@@ -28,7 +28,7 @@ export const sidebarConfig: SidebarConfig = withUserConfig("sidebar", {
 	side: "left",
 	components: [
 		{ type: "profile", enable: true, slot: "top" },
-		{ type: "music", enable: true, slot: "top" },
+		// 音乐播放器已随 musicConfig.enable=false 整体关闭，此处不再编排 music widget。
 		{ type: "announcement", enable: true, slot: "top", pages: ["home"] },
 		{
 			type: "categories",
